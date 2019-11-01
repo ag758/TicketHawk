@@ -61,6 +61,8 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ref = Constants.ref
+        
         let currentUser = Auth.auth().currentUser
         
         if currentUser == nil{
@@ -68,6 +70,26 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             self.present(next, animated: false, completion: nil)
             return
         }
+        
+        let userID = Auth.auth().currentUser?.uid ?? ""
+        
+        let custRef : DatabaseReference? = ref?.child("customers").child(userID)
+        
+        // Attach a listener to read the data at our posts reference
+        custRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            
+            ///If no value exists -- means false
+            let didFinishProfile = value?["didFinishSigningUp"] as? Bool ?? false
+            
+            
+            if didFinishProfile == false {
+                let next = self.storyboard!.instantiateViewController(withIdentifier: "splitViewController") as! SplitViewController
+                self.present(next, animated: false, completion: nil)
+                return
+            }
+        })
         
         SplitViewController.customerMainVC = self
 
@@ -81,7 +103,9 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         self.navigationItem.title = ""
         
         // Do any additional setup after loading the view.
-        ref = Constants.ref
+        
+        print("2")
+        
         
         vendorsTableView.delegate = self
         vendorsTableView.dataSource = self
@@ -101,6 +125,8 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         self.view.addGestureRecognizer(tapGesture)
         
         loadCommunity()
+        
+        print("3")
         
         //Change height of content view
         
