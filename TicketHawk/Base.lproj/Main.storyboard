@@ -903,13 +903,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kti-Ru-5BT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="U7R-Ex-ubk"/>
+                                    <constraint firstAttribute="height" constant="100" id="U7R-Ex-ubk"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgY-iH-nug">
-                                <rect key="frame" x="30" y="190" width="225" height="30"/>
+                                <rect key="frame" x="30" y="160" width="225" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="6cD-0d-5Qi"/>
                                 </constraints>
@@ -919,7 +919,7 @@
                                 </state>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wvd-LF-m9y">
-                                <rect key="frame" x="20" y="270" width="335" height="397"/>
+                                <rect key="frame" x="20" y="240" width="335" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eventTableViewCell" rowHeight="220" id="eYr-Bh-8O2" customClass="EventTableViewCell" customModule="TicketHawk" customModuleProvider="target">
@@ -1007,7 +1007,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4L-Ve-u1m">
-                                <rect key="frame" x="265" y="190" width="80" height="30"/>
+                                <rect key="frame" x="265" y="160" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="gVx-Sj-cyk"/>
                                     <constraint firstAttribute="width" constant="80" id="j0j-RU-ho6"/>
@@ -1019,7 +1019,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QU-6T-RZj">
-                                <rect key="frame" x="30" y="230" width="315" height="30"/>
+                                <rect key="frame" x="30" y="200" width="315" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="wHi-ge-KNc"/>
                                 </constraints>
@@ -1029,7 +1029,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F1m-vL-bI4">
-                                <rect key="frame" x="30" y="130" width="315" height="50"/>
+                                <rect key="frame" x="30" y="100" width="315" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="U3A-2R-IOY"/>
                                 </constraints>
