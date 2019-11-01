@@ -37,7 +37,6 @@ class EventViewController: UIViewController {
         ref = Constants.ref
         loadEventDetails()
         
-        eventImageView.layer.cornerRadius = 5
         vendorImageView.layer.cornerRadius = 20
         
         purchaseTickets.backgroundColor = .clear
