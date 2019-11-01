@@ -35,7 +35,7 @@ class AccountEditViewController: UIViewController {
         saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium)
         saveButton.setTitle("Save", for: .normal)
         
-        ref = SplitViewController.ref
+        ref = Constants.ref
         
         ref?.child("customers").child(Auth.auth().currentUser?.uid ?? "").observeSingleEvent(of: .value, with: {(snapshot) in
             

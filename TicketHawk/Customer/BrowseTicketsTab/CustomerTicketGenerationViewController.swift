@@ -23,7 +23,7 @@ class CustomerTicketGenerationViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.hidesBackButton = true
-        ref = SplitViewController.ref
+        ref = Constants.ref
         
         var addedTickets = 0
         

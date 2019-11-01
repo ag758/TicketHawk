@@ -17,7 +17,6 @@ class SplitViewController: UIViewController {
     static var ticketsVC: CustomerTicketViewController?
     static var ticketsArchiveVC: CustomerArchiveTicketViewController?
 
-    @IBOutlet weak var vendorButton: UIButton!
     @IBOutlet weak var customerButton: UIButton!
     
     static var greenColor: UIColor = UIColor.black
@@ -48,19 +47,6 @@ class SplitViewController: UIViewController {
         customerButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.semibold)
         customerButton.setTitle("I'm Buying Tickets", for: .normal)
         
-        vendorButton.backgroundColor = .clear
-        vendorButton.layer.cornerRadius = 20
-        vendorButton.layer.borderWidth = 3
-        vendorButton.layer.borderColor = UIColor.white.cgColor
-        
-        vendorButton.setTitleColor(UIColor.white, for: .normal)
-        
-        vendorButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.semibold)
-        vendorButton.setTitle("I'm Selling Tickets", for: .normal)
-    }
-    @IBAction func vendorPressed(_ sender: Any) {
-        let next = self.storyboard!.instantiateViewController(withIdentifier: "vendorViewController1") as! VendorViewController1
-        self.present(next, animated: true, completion: nil)
     }
     
     @IBAction func customerPressed(_ sender: Any) {

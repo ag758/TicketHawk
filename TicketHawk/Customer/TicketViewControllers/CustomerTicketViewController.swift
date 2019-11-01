@@ -57,7 +57,7 @@ class CustomerTicketViewController: UIViewController, UITableViewDelegate, UITab
         imageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = imageView
         
-        ref = SplitViewController.ref
+        ref = Constants.ref
         
         self.ticketsMasterTableView.rowHeight = ticketsMasterTableView.bounds.height
         self.ticketsMasterTableView.backgroundColor = UIColor.clear

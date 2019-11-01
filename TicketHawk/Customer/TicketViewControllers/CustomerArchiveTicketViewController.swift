@@ -31,7 +31,7 @@ class CustomerArchiveTicketViewController: UIViewController, UITableViewDelegate
         
         SplitViewController.ticketsArchiveVC = self
         
-        self.ref = SplitViewController.ref
+        self.ref = Constants.ref
         
         loadTickets()
         

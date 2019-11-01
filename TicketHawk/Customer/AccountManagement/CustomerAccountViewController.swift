@@ -35,7 +35,7 @@ class CustomerAccountViewController: UIViewController, UITableViewDataSource, UI
         settingsTableView.dataSource = self
         settingsTableView.reloadData()
         settingsTableView.layer.cornerRadius = 20
-        settingsTableView.backgroundColor = SplitViewController.almostBlack
+        settingsTableView.backgroundColor = Constants.almostBlack
         settingsTableView.separatorColor = UIColor.black
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -52,7 +52,7 @@ class CustomerAccountViewController: UIViewController, UITableViewDataSource, UI
         let cell = UITableViewCell()
         cell.textLabel?.text = settingsArray[indexPath.row]
         cell.textLabel?.textColor = UIColor.white
-        cell.backgroundColor = SplitViewController.almostBlack
+        cell.backgroundColor = Constants.almostBlack
         cell.selectionStyle = .none
         
         return cell

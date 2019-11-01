@@ -47,7 +47,7 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = SplitViewController.ref
+        ref = Constants.ref
         
         vendorTableView.dataSource = self
         vendorTableView.delegate = self
@@ -90,14 +90,14 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as! EventTableViewCell
-         cell.backgroundColor = SplitViewController.almostBlack
+         cell.backgroundColor = Constants.almostBlack
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         cell.dateView.text = events[indexPath.row].dateAndTime
         cell.eventTitle.text = events[indexPath.row].title
         cell.priceView.text = events[indexPath.row].lowestPrice
         
-        cell.bottomRound.backgroundColor = SplitViewController.almostBlack
+        cell.bottomRound.backgroundColor = Constants.almostBlack
         //cell.eventImageView.layer.cornerRadius = 5
         cell.bottomRound.layer.cornerRadius = 5
         cell.layer.cornerRadius = 5

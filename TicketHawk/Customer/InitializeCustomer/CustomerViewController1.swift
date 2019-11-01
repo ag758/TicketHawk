@@ -21,7 +21,7 @@ class CustomerViewController1: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        ref = SplitViewController.ref
+        ref = Constants.ref
         view.backgroundColor = UIColor.black
         setCosmetics()
         

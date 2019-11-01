@@ -28,7 +28,7 @@ class CustomerViewController2: UIViewController,UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = SplitViewController.ref
+        ref = Constants.ref
         
 
         // Do any additional setup after loading the view.

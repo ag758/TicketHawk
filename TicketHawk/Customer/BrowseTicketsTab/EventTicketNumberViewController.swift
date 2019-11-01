@@ -222,7 +222,7 @@ class EventTicketNumberViewController: UIViewController
                 //Send price to square
                 let theme = STPTheme()
                 
-                theme.accentColor = SplitViewController.greenColor
+                theme.accentColor = Constants.greenColor
                 let addCardViewController = STPAddCardViewController(configuration: STPPaymentConfiguration.shared(), theme: theme)
                 addCardViewController.delegate = self
                 addCardViewController.title = "Enter Card Information"

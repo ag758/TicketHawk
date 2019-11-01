@@ -61,6 +61,14 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let currentUser = Auth.auth().currentUser
+        
+        if currentUser == nil{
+            let next = self.storyboard!.instantiateViewController(withIdentifier: "splitViewController") as! SplitViewController
+            self.present(next, animated: false, completion: nil)
+            return
+        }
+        
         SplitViewController.customerMainVC = self
 
         self.navigationController!.navigationBar.barTintColor = UIColor.black
@@ -73,7 +81,7 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         self.navigationItem.title = ""
         
         // Do any additional setup after loading the view.
-        ref = SplitViewController.ref
+        ref = Constants.ref
         
         vendorsTableView.delegate = self
         vendorsTableView.dataSource = self
@@ -141,7 +149,7 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             let cell = self.vendorsTableView
                 .dequeueReusableCell(withIdentifier: "vendorCell") as! VendorTableViewCell
             
-            cell.backgroundColor = SplitViewController.almostBlack
+            cell.backgroundColor = Constants.almostBlack
             //cell.layer.cornerRadius = 5
             cell.vendorProfileImageView.layer.cornerRadius = 5
             
@@ -188,7 +196,7 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         if (indexPath.row < loadedEvents.count){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCollectionCell", for: indexPath) as! FeaturedEventCollectionViewCell
             
-            cell.backgroundColor = SplitViewController.almostBlack
+            cell.backgroundColor = Constants.almostBlack
             cell.layer.cornerRadius = 5
             //cell.eventImageView.layer.cornerRadius = 5
             

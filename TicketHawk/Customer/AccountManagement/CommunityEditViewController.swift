@@ -24,7 +24,7 @@ class CommunityEditViewController: UIViewController ,UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = SplitViewController.ref
+        ref = Constants.ref
 
         saveButton.backgroundColor = .clear
         saveButton.layer.cornerRadius = 25

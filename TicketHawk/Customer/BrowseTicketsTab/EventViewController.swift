@@ -34,7 +34,7 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        ref = SplitViewController.ref
+        ref = Constants.ref
         loadEventDetails()
         
         eventImageView.layer.cornerRadius = 5
