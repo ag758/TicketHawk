@@ -185,6 +185,8 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             let cell = self.vendorsTableView
                 .dequeueReusableCell(withIdentifier: "vendorCell") as! VendorTableViewCell
             
+            cell.tag = indexPath.row
+            
             cell.backgroundColor = Constants.almostBlack
             //cell.layer.cornerRadius = 5
             cell.vendorProfileImageView.layer.cornerRadius = 5
@@ -197,23 +199,23 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             let url = URL(string: filteredVendors[indexPath.row].pictureURL ?? "") ?? URL(string: "www.apple.com")!
             
             cell.vendorProfileImageView.image = UIImage()
-            downloadImage(from: url, iv: cell.vendorProfileImageView)
+            
+            if cell.tag == indexPath.row{
+                downloadImage(from: url, iv: cell.vendorProfileImageView)
+            }
+            
             
             for view in cell.subviews {
                 view.isUserInteractionEnabled = false
             }
+            
+            
+            
             return cell
         }
         else {
             return UITableViewCell()
         }
-        
-       
-        
-        
-        
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -231,6 +233,10 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         
         if (indexPath.row < loadedEvents.count){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCollectionCell", for: indexPath) as! FeaturedEventCollectionViewCell
+            
+            //tagged
+            
+            cell.tag = indexPath.row
             
             cell.backgroundColor = Constants.almostBlack
             cell.layer.cornerRadius = 5
@@ -256,11 +262,17 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             let url = URL(string: loadedEvents[indexPath.row].imageURL ?? "www.apple.com") ?? URL(string: "www.apple.com")!
             
             cell.eventImageView.image = UIImage()
-            downloadImage(from: url, iv: cell.eventImageView)
+            
+            if cell.tag == indexPath.row {
+                 downloadImage(from: url, iv: cell.eventImageView)
+            }
+           
             
             for view in cell.subviews {
                 view.isUserInteractionEnabled = false
             }
+            
+           
             
             
             return cell
