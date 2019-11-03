@@ -19,7 +19,12 @@ internal class EventTableViewCell: UITableViewCell {
     
     @IBOutlet weak var bottomRound: UIImageView!
     
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        eventImageView.af_cancelImageRequest() // NOTE: - Using AlamofireImage
+        eventImageView.image = nil
+    }
 }
 
 class CustomerVendorListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -71,7 +76,7 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
             
         self.vendorNameView.setTitle(value?["organizationName"] as? String ?? "", for: UIControl.State.normal)
             
-            self.downloadImage(from: URL(string : value?["organizationProfileImage"] as? String ?? "") ?? URL(string: "www.apple.com")!, iv: self.vendorImageView)
+            self.alamofireLoad(from: URL(string : value?["organizationProfileImage"] as? String ?? "") ?? URL(string: "www.apple.com")!, iv: self.vendorImageView)
         
         self.phoneNumber.setTitle("📞 " + (value?["custSuppPhoneNumber"] as? String ?? ""), for: .normal)
         self.email.setTitle("✉️ " + (value?["custSupportEmail"] as? String ?? ""), for: .normal)
@@ -104,7 +109,7 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
         
         let url = URL(string: events[indexPath.row].imageURL!) ?? URL(string: "www.apple.com")!
         
-        downloadImage(from: url, iv: cell.eventImageView)
+        alamofireLoad(from: url, iv: cell.eventImageView)
         
         cell.dateView.textContainer.maximumNumberOfLines = 1
         cell.dateView.textContainer.lineBreakMode = .byTruncatingTail
@@ -252,6 +257,10 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
     
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func alamofireLoad (from url: URL, iv: UIImageView){
+        iv.af_setImage(withURL: url)
     }
     
     func downloadImage(from url: URL, iv: UIImageView) {

@@ -168,7 +168,6 @@
 			children = (
 				5656DA3A22C060710079920C /* SplitViewController.swift */,
 				5656DA3822C060710079920C /* AppDelegate.swift */,
-				56EAB8D92311C6650053A460 /* StripeClasses */,
 				56A6FDB3230F9D7D00825DD4 /* Customer */,
 				5665A2EE22C7F16B00148ADD /* GoogleService-Info.plist */,
 				56EE89D322DB8A2700A5267E /* Event.swift */,
@@ -238,6 +237,7 @@
 		56DCCDA8232C7F60008BD144 /* TicketViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				56EAB8D92311C6650053A460 /* StripeClasses */,
 				5622A97B22EE822A00F0A806 /* CustomerTicketViewController.swift */,
 				561F91612326983B00194AA3 /* CustomerArchiveTicketViewController.swift */,
 			);
@@ -487,6 +487,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TicketHawk/Pods-TicketHawk-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -508,6 +509,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",

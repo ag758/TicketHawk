@@ -21,6 +21,8 @@ target 'TicketHawk' do
   pod ‘FBSDKCoreKit’
   pod ‘FBSDKLoginKit’
 
+  pod 'AlamofireImage'
+
   pod 'IQKeyboardManagerSwift'
 
   target 'TicketHawkTests' do

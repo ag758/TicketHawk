@@ -11,13 +11,24 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import Firebase
 import FirebaseUI
+import Alamofire
+import AlamofireImage
 
 internal class VendorTableViewCell: UITableViewCell {
     
     @IBOutlet weak var vendorProfileImageView: UIImageView!
     @IBOutlet weak var vendorTitleView: UITextView!
     @IBOutlet weak var vendorCategoryView: UITextView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        vendorProfileImageView.af_cancelImageRequest() // NOTE: - Using AlamofireImage
+        vendorProfileImageView.image = nil
+    }
 }
+
+
 
 internal class FeaturedEventCollectionViewCell: UICollectionViewCell {
     
@@ -26,6 +37,13 @@ internal class FeaturedEventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sellerView: UITextView!
     @IBOutlet weak var dateView: UITextView!
     @IBOutlet weak var priceView: UITextView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+       eventImageView.af_cancelImageRequest() // NOTE: - Using AlamofireImage
+        eventImageView.image = nil
+    }
     
 }
 
@@ -198,10 +216,10 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             
             let url = URL(string: filteredVendors[indexPath.row].pictureURL ?? "") ?? URL(string: "www.apple.com")!
             
-            cell.vendorProfileImageView.image = UIImage()
+            cell.vendorProfileImageView.image = nil
             
             if cell.tag == indexPath.row{
-                downloadImage(from: url, iv: cell.vendorProfileImageView)
+                alamofireLoad(from: url, iv: cell.vendorProfileImageView)
             }
             
             
@@ -261,10 +279,10 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             
             let url = URL(string: loadedEvents[indexPath.row].imageURL ?? "www.apple.com") ?? URL(string: "www.apple.com")!
             
-            cell.eventImageView.image = UIImage()
+            cell.eventImageView.image = nil
             
             if cell.tag == indexPath.row {
-                 downloadImage(from: url, iv: cell.eventImageView)
+                 alamofireLoad(from: url, iv: cell.eventImageView)
             }
            
             
@@ -540,6 +558,10 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             }
         }
         
+    }
+    
+    func alamofireLoad (from url: URL, iv: UIImageView){
+        iv.af_setImage(withURL: url)
     }
     
     @IBAction func communityButtonIsPressed(_ sender: Any) {
