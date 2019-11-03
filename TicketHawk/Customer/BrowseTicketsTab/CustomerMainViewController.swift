@@ -85,14 +85,24 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             
             
             if didFinishProfile == false {
+                do {try Auth.auth().signOut()}
+                catch {
+                    
+                }
                 let next = self.storyboard!.instantiateViewController(withIdentifier: "splitViewController") as! SplitViewController
                 self.present(next, animated: false, completion: nil)
                 return
+            } else {
+                self.onCreateContinue()
             }
         })
         
+    }
+    
+    func onCreateContinue(){
+        
         SplitViewController.customerMainVC = self
-
+        
         self.navigationController!.navigationBar.barTintColor = UIColor.black
         
         let logo = UIImage(named: "thawk_transparent.png")
@@ -119,7 +129,7 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         eventsCollectionView.reloadData()
         
         vendorsSearchBar.delegate = self
-
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
