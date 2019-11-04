@@ -93,6 +93,8 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         
         let custRef : DatabaseReference? = ref?.child("customers").child(userID)
         
+        self.onCreateRegardless()
+        
         // Attach a listener to read the data at our posts reference
         custRef?.observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
@@ -117,7 +119,8 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         
     }
     
-    func onCreateContinue(){
+    func onCreateRegardless(){
+        
         
         SplitViewController.customerMainVC = self
         
@@ -152,9 +155,6 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
         
-        loadCommunity()
-        
-        print("3")
         
         //Change height of content view
         
@@ -165,6 +165,13 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+    }
+    
+    func onCreateContinue(){
+        
+        loadCommunity()
+        
+        print("3")
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
