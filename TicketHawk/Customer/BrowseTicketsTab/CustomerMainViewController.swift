@@ -79,43 +79,9 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Constants.ref
-        
-        let currentUser = Auth.auth().currentUser
-        
-        if currentUser == nil{
-            let next = self.storyboard!.instantiateViewController(withIdentifier: "splitViewController") as! SplitViewController
-            self.present(next, animated: false, completion: nil)
-            return
-        }
-        
-        let userID = Auth.auth().currentUser?.uid ?? ""
-        
-        let custRef : DatabaseReference? = ref?.child("customers").child(userID)
-        
         self.onCreateRegardless()
+        self.onCreateContinue()
         
-        // Attach a listener to read the data at our posts reference
-        custRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            
-            ///If no value exists -- means false
-            let didFinishProfile = value?["didFinishSigningUp"] as? Bool ?? false
-            
-            
-            if didFinishProfile == false {
-                do {try Auth.auth().signOut()}
-                catch {
-                    
-                }
-                let next = self.storyboard!.instantiateViewController(withIdentifier: "splitViewController") as! SplitViewController
-                self.present(next, animated: false, completion: nil)
-                return
-            } else {
-                self.onCreateContinue()
-            }
-        })
         
     }
     
@@ -168,10 +134,42 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     }
     
     func onCreateContinue(){
+        ref = Constants.ref
         
-        loadCommunity()
+        let currentUser = Auth.auth().currentUser
         
-        print("3")
+        if currentUser == nil{
+            let next = self.storyboard!.instantiateViewController(withIdentifier: "splitViewController") as! SplitViewController
+            self.present(next, animated: false, completion: nil)
+            return
+        }
+        
+        let userID = Auth.auth().currentUser?.uid ?? ""
+        
+        let custRef : DatabaseReference? = ref?.child("customers").child(userID)
+        
+        // Attach a listener to read the data at our posts reference
+        custRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            
+            ///If no value exists -- means false
+            let didFinishProfile = value?["didFinishSigningUp"] as? Bool ?? false
+            
+            
+            if didFinishProfile == false {
+                do {try Auth.auth().signOut()}
+                catch {
+                    
+                }
+                let next = self.storyboard!.instantiateViewController(withIdentifier: "splitViewController") as! SplitViewController
+                self.present(next, animated: false, completion: nil)
+                return
+            } else {
+                self.loadCommunity()
+            }
+        })
+        
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
