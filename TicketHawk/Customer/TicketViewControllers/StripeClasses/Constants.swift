@@ -32,7 +32,7 @@ import Firebase
 
 enum Constants {
   static let publishableKey = "pk_test_fKyLqJd3qZN9L1aUlHCIobOi00PTyZP089"
-  static let baseURLString = "https://secure-coast-21802.herokuapp.com"
+  static let baseURLString = "https://secret-river-64641.herokuapp.com"
   static let defaultCurrency = "usd"
   static let defaultDescription = "Purchase from TicketHawk"
     

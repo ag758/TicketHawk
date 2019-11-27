@@ -140,7 +140,7 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         
         if currentUser == nil{
             let next = self.storyboard!.instantiateViewController(withIdentifier: "splitViewController") as! SplitViewController
-            self.present(next, animated: false, completion: nil)
+            self.present(next, animated: true, completion: nil)
             return
         }
         
@@ -524,7 +524,12 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             let ticketCategory = value?["ticketCategory"] as? String ?? ""
             let vendorToBeAdded = Vendor(id: vendorid, name: orgName, pictureURL: pictureURL, ticketCategory: ticketCategory)
             
-            self.vendors = self.randomAppend(array: self.vendors, object: vendorToBeAdded) as? [Vendor] ?? []
+            let didFinishSigningUp = value?["didFinishSigningUp"] as? Bool ?? false
+            
+            if didFinishSigningUp {
+                self.vendors = self.randomAppend(array: self.vendors, object: vendorToBeAdded) as? [Vendor] ?? []
+            }
+            
         
             DispatchQueue.global(qos: .background).async {
                 DispatchQueue.main.async {
