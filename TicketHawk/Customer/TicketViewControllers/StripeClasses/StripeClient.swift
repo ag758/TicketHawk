@@ -50,7 +50,7 @@ final class StripeClient {
     return url
   }()
     
-    func completeCharge(with token: STPToken, amount: Int, completion: @escaping (Result) -> Void) {
+    func completeCharge(with token: STPToken, amount: Int, accountID: String, feeAmount: Int, completion: @escaping (Result) -> Void) {
         // 1
         let url = baseURL.appendingPathComponent("charge")
         // 2
@@ -58,7 +58,9 @@ final class StripeClient {
             "token": token.tokenId,
             "amount": amount,
             "currency": Constants.defaultCurrency,
-            "description": Constants.defaultDescription
+            "description": Constants.defaultDescription,
+            "application_fee_amount": feeAmount,
+            "account_id": accountID
         ]
         // 3
         Alamofire.request(url, method: .post, parameters: params)

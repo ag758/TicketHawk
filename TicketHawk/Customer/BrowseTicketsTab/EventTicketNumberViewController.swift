@@ -274,61 +274,72 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
                 self.present(alertController, animated: true)
                 return
             } else {
-                StripeClient.shared.completeCharge(with: token, amount: self.paymentTotalInt ?? 0) { result in
-                    switch result {
-                    // 1
-                    case .success:
-                        completion(nil)
-                        
-                        //Update Going and Total Sales using Transactions
-                        
-                        let goingRef = self.ref?.child("vendors").child(self.vendorID ?? "").child("events").child(self.eventID ?? "").child("going")
-                        let grossSalesRef = self.ref?.child("vendors").child(self.vendorID ?? "").child("events").child(self.eventID ?? "").child("grossSales")
-                        let netSalesRef = self.ref?.child("vendors").child(self.vendorID ?? "").child("events").child(self.eventID ?? "").child("netSales")
-                        
-                        goingRef?.runTransactionBlock { (currentData: MutableData) -> TransactionResult in
-                            var value = currentData.value as? Int
-                            if value == nil {
-                                value = 0
+                
+                
+                self.ref?.child("vendors").child(self.vendorID ?? "").observeSingleEvent(of: .value, with: {(snapshot) in
+                    
+                    let account = snapshot.value as? NSDictionary
+                    
+                    let accountID = account?["stripeAcctID"] as? String ?? ""
+                    
+                    StripeClient.shared.completeCharge(with: token, amount: self.paymentTotalInt ?? 0, accountID: accountID, feeAmount: self.fees ?? 0) { result in
+                        switch result {
+                        // 1
+                        case .success:
+                            completion(nil)
+                            
+                            //Update Going and Total Sales using Transactions
+                            
+                            let goingRef = self.ref?.child("vendors").child(self.vendorID ?? "").child("events").child(self.eventID ?? "").child("going")
+                            let grossSalesRef = self.ref?.child("vendors").child(self.vendorID ?? "").child("events").child(self.eventID ?? "").child("grossSales")
+                            let netSalesRef = self.ref?.child("vendors").child(self.vendorID ?? "").child("events").child(self.eventID ?? "").child("netSales")
+                            
+                            goingRef?.runTransactionBlock { (currentData: MutableData) -> TransactionResult in
+                                var value = currentData.value as? Int
+                                if value == nil {
+                                    value = 0
+                                }
+                                currentData.value = (value ?? 0) + (self.purchaseQuantity )
+                                return TransactionResult.success(withValue: currentData)
                             }
-                            currentData.value = (value ?? 0) + (self.purchaseQuantity )
-                            return TransactionResult.success(withValue: currentData)
-                        }
-                        
-                        grossSalesRef?.runTransactionBlock { (currentData: MutableData) -> TransactionResult in
                             
-                            let value = currentData.value as? Int ?? 0
-                            print("pT" + String(self.paymentTotalWithoutTaxInt ?? 0))
-                            currentData.value = value + (Int(self.paymentTotalInt ?? 0 ) )
-                            return TransactionResult.success(withValue: currentData)
-                        }
-                        netSalesRef?.runTransactionBlock { (currentData: MutableData) -> TransactionResult in
+                            grossSalesRef?.runTransactionBlock { (currentData: MutableData) -> TransactionResult in
+                                
+                                let value = currentData.value as? Int ?? 0
+                                print("pT" + String(self.paymentTotalWithoutTaxInt ?? 0))
+                                currentData.value = value + (Int(self.paymentTotalInt ?? 0 ) )
+                                return TransactionResult.success(withValue: currentData)
+                            }
+                            netSalesRef?.runTransactionBlock { (currentData: MutableData) -> TransactionResult in
+                                
+                                let value = currentData.value as? Int ?? 0
+                                print("pT" + String(self.paymentTotalWithoutTaxInt ?? 0))
+                                currentData.value = value + (Int(self.paymentTotalWithoutTaxInt ?? 0 ) )
+                                return TransactionResult.success(withValue: currentData)
+                            }
                             
-                            let value = currentData.value as? Int ?? 0
-                            print("pT" + String(self.paymentTotalWithoutTaxInt ?? 0))
-                            currentData.value = value + (Int(self.paymentTotalWithoutTaxInt ?? 0 ) )
-                            return TransactionResult.success(withValue: currentData)
+                            
+                            
+                            
+                            
+                            
+                            //Transition to Ticket Generation
+                            let next = self.storyboard!.instantiateViewController(withIdentifier: "customerTicketGenerationViewController") as! CustomerTicketGenerationViewController
+                            
+                            next.map = self.map
+                            next.vendorID = self.vendorID
+                            next.eventID = self.eventID
+                            
+                            
+                            self.navigationController!.pushViewController(next, animated: true)
+                        // 2
+                        case .failure(let error):
+                            completion(error)
                         }
-                        
-                        
-                        
-                        
-                        
-                        
-                        //Transition to Ticket Generation
-                        let next = self.storyboard!.instantiateViewController(withIdentifier: "customerTicketGenerationViewController") as! CustomerTicketGenerationViewController
-                        
-                        next.map = self.map
-                        next.vendorID = self.vendorID
-                        next.eventID = self.eventID
-                        
-                        
-                        self.navigationController!.pushViewController(next, animated: true)
-                    // 2
-                    case .failure(let error):
-                        completion(error)
                     }
-                }
+
+                    
+                })
             }
             
         })
@@ -338,3 +349,10 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
         
     }
 }
+
+
+
+
+
+
+
