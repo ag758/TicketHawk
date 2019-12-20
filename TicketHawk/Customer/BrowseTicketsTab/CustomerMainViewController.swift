@@ -411,29 +411,24 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
                     
                     if endDate ?? Date() > Date(){
                         print("jellyfish")
-                    }
-                    
-                    //self.loadedEvents.append(eventInstance)
-                    self.loadedEvents = self.randomAppend(array: self.loadedEvents, object: eventInstance) as? [Event] ?? []
-                    
-                    DispatchQueue.global(qos: .background).async {
-                        print("This is run on the background queue")
                         
-                        //self.loadedEvents.shuffle()
-                        print(self.loadedEvents.count)
+                        //self.loadedEvents.append(eventInstance)
+                        self.loadedEvents = self.randomAppend(array: self.loadedEvents, object: eventInstance) as? [Event] ?? []
                         
-                        DispatchQueue.main.async {
-                            print("This is run on the main queue, after the previous code in outer block")
-                            self.eventsCollectionView.reloadData()
+                        DispatchQueue.global(qos: .background).async {
+                            print("This is run on the background queue")
+                            
+                            //self.loadedEvents.shuffle()
+                            print(self.loadedEvents.count)
+                            
+                            DispatchQueue.main.async {
+                                print("This is run on the main queue, after the previous code in outer block")
+                                self.eventsCollectionView.reloadData()
+                            }
+                            
+                            
                         }
-                        
-                        
                     }
-                    
-                    
-                    
-                    
-                    
                     
                 }
                 

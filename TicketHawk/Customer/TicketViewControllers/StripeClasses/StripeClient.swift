@@ -59,7 +59,7 @@ final class StripeClient {
             "amount": amount,
             "currency": Constants.defaultCurrency,
             "description": Constants.defaultDescription,
-            "application_fee_amount": amount - feeAmount,
+            "application_fee_amount": feeAmount,
             "account_id": accountID
         ]
         
