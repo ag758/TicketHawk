@@ -373,7 +373,7 @@ PODS:
   - SDWebImage (5.4.0):
     - SDWebImage/Core (= 5.4.0)
   - SDWebImage/Core (5.4.0)
-  - Stripe (18.3.0)
+  - Stripe (15.0.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -387,7 +387,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - FirebaseUI
   - IQKeyboardManagerSwift
-  - Stripe
+  - Stripe (~> 15.0.1)
 
 SPEC REPOS:
   trunk:
@@ -466,8 +466,8 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
-  Stripe: 35b9a54e698c82163d2ef105187a996d009fd386
+  Stripe: 2c4d0a88817361a102886315ff452d90f65e898b
 
-PODFILE CHECKSUM: 635f118762c9583fc41d7ec3974faae1dc56af0c
+PODFILE CHECKSUM: c3bb3d8afb17337477791183885561d4fb82e48b
 
 COCOAPODS: 1.8.4

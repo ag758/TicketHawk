@@ -7,7 +7,7 @@ target 'TicketHawk' do
 
   # pods for Stripe
   pod 'Alamofire'
-  pod 'Stripe'
+  pod 'Stripe', '~> 15.0.1'
 
   # Pods for Firebase
   pod ‘Firebase/Core’

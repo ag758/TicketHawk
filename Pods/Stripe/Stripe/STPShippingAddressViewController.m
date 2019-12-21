@@ -16,7 +16,6 @@
 #import "STPImageLibrary+Private.h"
 #import "STPLocalizationUtils.h"
 #import "STPPaymentActivityIndicatorView.h"
-#import "STPPaymentConfiguration+Private.h"
 #import "STPPaymentContext+Private.h"
 #import "STPSectionHeaderView.h"
 #import "STPShippingMethodsViewController.h"
@@ -54,9 +53,6 @@
     if ([paymentOption isKindOfClass:[STPCard class]]) {
         STPCard *card = (STPCard *)paymentOption;
         billingAddress = [card address];
-    } else if ([paymentOption isKindOfClass:[STPPaymentMethod class]]) {
-        STPPaymentMethod *paymentMethod = (STPPaymentMethod *)paymentOption;
-        billingAddress = [[STPAddress alloc] initWithPaymentMethodBillingDetails:paymentMethod.billingDetails];
     }
     STPUserInformation *prefilledInformation;
     if (paymentContext.prefilledInformation != nil) {
@@ -88,11 +84,12 @@
         _selectedShippingMethod = selectedShippingMethod;
         _billingAddress = prefilledInformation.billingAddress;
         _hasUsedBillingAddress = NO;
-        _addressViewModel = [[STPAddressViewModel alloc] initWithRequiredShippingFields:configuration.requiredShippingAddressFields availableCountries:configuration._availableCountries];
+        _addressViewModel = [[STPAddressViewModel alloc] initWithRequiredShippingFields:configuration.requiredShippingAddressFields];
         _addressViewModel.delegate = self;
         if (shippingAddress != nil) {
             _addressViewModel.address = shippingAddress;
-        } else if (prefilledInformation.shippingAddress != nil) {
+        }
+        else if (prefilledInformation.shippingAddress != nil) {
             _addressViewModel.address = prefilledInformation.shippingAddress;
         }
         self.title = [self titleForShippingType:self.configuration.shippingType];
@@ -132,7 +129,6 @@
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView reloadData];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEditing)]];
 
     STPSectionHeaderView *headerView = [STPSectionHeaderView new];
@@ -232,12 +228,14 @@
                                                                                                                                            theme:self.theme];
                         nextViewController.delegate = self;
                         [self.navigationController pushViewController:nextViewController animated:YES];
-                    } else {
+                    }
+                    else {
                         [self.delegate shippingAddressViewController:self
                                                 didFinishWithAddress:address
                                                       shippingMethod:nil];
                     }
-                } else {
+                }
+                else {
                     [self handleShippingValidationError:shippingValidationError];
                 }
             }];
@@ -275,7 +273,8 @@
 - (void)dismissWithCompletion:(STPVoidBlock)completion {
     if ([self stp_isAtRootOfNavigationController]) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:completion];
-    } else {
+    }
+    else {
         UIViewController *previous = self.navigationController.viewControllers.firstObject;
         for (UIViewController *viewController in self.navigationController.viewControllers) {
             if (viewController == self) {
@@ -301,14 +300,6 @@
 
 - (void)addressViewModelDidChange:(__unused STPAddressViewModel *)addressViewModel {
     [self updateDoneButton];
-}
-
-- (void)addressViewModelWillUpdate:(__unused STPAddressViewModel *)addressViewModel {
-    [self.tableView beginUpdates];
-}
-
-- (void)addressViewModelDidUpdate:(__unused STPAddressViewModel *)addressViewModel {
-    [self.tableView endUpdates];
 }
 
 #pragma mark - UITableView
@@ -377,7 +368,8 @@
                 return STPLocalizedString(@"Delivery", @"Title for delivery info form");
                 break;
         }
-    } else {
+    }
+    else {
         return STPLocalizedString(@"Contact", @"Title for contact info form");
     }
 }
@@ -392,7 +384,8 @@
                 return STPLocalizedString(@"Delivery Address", @"Title for delivery address entry section");
                 break;
         }
-    } else {
+    }
+    else {
         return STPLocalizedString(@"Contact", @"Title for contact info form");
     }
 }

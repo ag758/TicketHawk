@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *number;
 
 /**
- Number representing the card's expiration month. Ex. @1
+ Two-digit number representing the card's expiration month.
  */
 @property (nonatomic, nullable) NSNumber *expMonth;
 
@@ -49,11 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
  Card security code. It is highly recommended to always include this value.
  */
 @property (nonatomic, copy, nullable) NSString *cvc;
-
-/**
-The last 4 digits of the card.
-*/
-@property (nonatomic, readonly, nullable) NSString *last4;
 
 @end
 

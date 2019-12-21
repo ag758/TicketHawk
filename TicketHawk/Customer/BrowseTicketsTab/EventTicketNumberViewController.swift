@@ -253,6 +253,8 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
                                didCreateToken token: STPToken,
                                completion: @escaping STPErrorBlock) {
         
+        print("token execute")
+        
         //
         
         self.ref?.child("vendors").child(vendorID ?? "").child("events").child(eventID ?? "").observeSingleEvent(of: .value, with: {(snapshot) in
