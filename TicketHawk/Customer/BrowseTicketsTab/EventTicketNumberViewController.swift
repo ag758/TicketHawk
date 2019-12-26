@@ -187,6 +187,8 @@ class EventTicketNumberViewController: UIViewController
         print(self.paymentTotalInt)
         
         
+        
+        
         // 1
         guard self.paymentTotalInt ?? 0 > 0 else {
             let alertController = UIAlertController(title: "No Items",
@@ -254,6 +256,8 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
                                completion: @escaping STPErrorBlock) {
         
         print("token execute")
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         //
         
@@ -337,6 +341,10 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
                         // 2
                         case .failure(let error):
                             completion(error)
+                            
+                            DispatchQueue.main.async {
+                                UIApplication.shared.endIgnoringInteractionEvents()
+                            }
                         }
                     }
 

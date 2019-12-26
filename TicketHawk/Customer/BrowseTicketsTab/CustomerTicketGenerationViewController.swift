@@ -128,6 +128,9 @@ class CustomerTicketGenerationViewController: UIViewController {
             })
             self.present(alert, animated: true, completion: nil)
             
+            DispatchQueue.main.async {
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
         }
     }
     
