@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,7 +25,6 @@
 		5665A2EF22C7F16B00148ADD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5665A2EE22C7F16B00148ADD /* GoogleService-Info.plist */; };
 		566B6EA0233EDB780023BC24 /* ClosedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566B6E9F233EDB780023BC24 /* ClosedEvent.swift */; };
 		5679117922F7309000B28677 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5679117822F7309000B28677 /* EventViewController.swift */; };
-		56A2B280231D76FA005A82CB /* CustomerTicketGenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A2B27F231D76FA005A82CB /* CustomerTicketGenerationViewController.swift */; };
 		56B00EC922F10A6800D4FC26 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B00EC822F10A6800D4FC26 /* Vendor.swift */; };
 		56CFF17022D1965E00459985 /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFF16F22D1965E00459985 /* CustomUITextField.swift */; };
 		56DCCDAC232C8994008BD144 /* CommunityEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DCCDAB232C8994008BD144 /* CommunityEditViewController.swift */; };
@@ -87,7 +86,6 @@
 		5665A2EE22C7F16B00148ADD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		566B6E9F233EDB780023BC24 /* ClosedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedEvent.swift; sourceTree = "<group>"; };
 		5679117822F7309000B28677 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
-		56A2B27F231D76FA005A82CB /* CustomerTicketGenerationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTicketGenerationViewController.swift; sourceTree = "<group>"; };
 		56B00EC822F10A6800D4FC26 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		56CFF16F22D1965E00459985 /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
 		56DCCDAB232C8994008BD144 /* CommunityEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityEditViewController.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 				563A1FD923208EE400ED9156 /* CustomerVendorListViewController.swift */,
 				5679117822F7309000B28677 /* EventViewController.swift */,
 				56E54167230D872C00203B92 /* EventTicketNumberViewController.swift */,
-				56A2B27F231D76FA005A82CB /* CustomerTicketGenerationViewController.swift */,
 			);
 			path = BrowseTicketsTab;
 			sourceTree = "<group>";
@@ -511,7 +508,6 @@
 				56EAB8D82311C4FC0053A460 /* Constants.swift in Sources */,
 				5656DA3B22C060710079920C /* SplitViewController.swift in Sources */,
 				56EAB8DB2311C6F80053A460 /* StripeClient.swift in Sources */,
-				56A2B280231D76FA005A82CB /* CustomerTicketGenerationViewController.swift in Sources */,
 				56DCCDAC232C8994008BD144 /* CommunityEditViewController.swift in Sources */,
 				5651F39522D144B3009BEF73 /* CustomerViewController2.swift in Sources */,
 				560CD18122D56CA600DCEA7C /* TicketType.swift in Sources */,
