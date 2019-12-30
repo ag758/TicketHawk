@@ -458,22 +458,59 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
         if quantity == totalQuantity * 2 {
             
             
+            //Check if the event has been closed already
             
-            
-            let alert = UIAlertController(title: "Your Purchase was Successful!", message: "View your new tickets in the 'My Tickets' tab.", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            self.ref?.child("vendors").child(self.vendorID ?? "").child("closedEvents").child(self.eventID ?? "").observeSingleEvent(of: .value, with:
+            {(snapshot) in
                 
-                //Update Ticket VC and Archive VC
-                //SplitViewController.ticketsVC?.loadTickets()
-                //SplitViewController.ticketsArchiveVC?.loadTickets()
+                if snapshot == nil {
+                    
+                    let alert = UIAlertController(title: "Your Purchase was Successful!", message: "View your new tickets in the 'My Tickets' tab.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                        
+                        //Update Ticket VC and Archive VC
+                        //SplitViewController.ticketsVC?.loadTickets()
+                        //SplitViewController.ticketsArchiveVC?.loadTickets()
+                        
+                        self.navigationController?.popToRootViewController(animated: true)
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    //DispatchQueue.main.async {
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    //}
+                    
+                    
+                } else {
+                    
+                    // Already been closed, remediate through deleting
+                    
+                    self.ref?.child("vendors").child(self.vendorID ?? "").child("events").child(self.eventID ?? "").removeValue()
+                    
+                    let alert = UIAlertController(title: "Your Purchase was Unsuccessful!", message: "Contact customer support for information on the refund process.", preferredStyle: UIAlertController.Style.alert)
+                                       alert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                                           
+                                           //Update Ticket VC and Archive VC
+                                           //SplitViewController.ticketsVC?.loadTickets()
+                                           //SplitViewController.ticketsArchiveVC?.loadTickets()
+                                           
+                                           self.navigationController?.popToRootViewController(animated: true)
+                                       })
+                   self.present(alert, animated: true, completion: nil)
+                   
+                   //DispatchQueue.main.async {
+                       UIApplication.shared.endIgnoringInteractionEvents()
+                   //}
+                    
+                    
+                }
                 
-                self.navigationController?.popToRootViewController(animated: true)
             })
-            self.present(alert, animated: true, completion: nil)
             
-            //DispatchQueue.main.async {
-                UIApplication.shared.endIgnoringInteractionEvents()
-            //}
+            
+            
+            
+            
         }
     }
     
