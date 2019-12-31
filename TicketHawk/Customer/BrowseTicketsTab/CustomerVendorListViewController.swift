@@ -152,7 +152,7 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
                 
                 let event = snapshot.childSnapshot(forPath: "events").childSnapshot(forPath: k as? String ?? "").value as? NSDictionary ?? [:]
                 
-                let title = event["eventTitle"] as! String
+                let title = event["eventTitle"] as? String ?? ""
                 var startDateAndTime = event["startDateAndTime"] as? String ?? "No Date Found"
                 let pictureURL = event["pictureURL"] as? String ?? ""
                 let tickets = event["ticketTypes"] as? Dictionary ?? [:]
@@ -163,7 +163,7 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
                 
-                let d1: Date = dateFormatter.date(from: startDateAndTime)!
+                let d1: Date = dateFormatter.date(from: startDateAndTime) ?? Date()
                 
                 let dateFormatter2 = DateFormatter()
                 dateFormatter2.amSymbol = "AM"
