@@ -453,6 +453,19 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
             totalQuantity = totalQuantity + i
         }
         
+        /**
+        
+        self.ref?.child("vendors").child(self.vendorID ?? "").child("closedEvents").child(self.eventID ?? "").observeSingleEvent(of: .value, with:
+        {(snapshot) in
+            
+            if snapshot.value != nil {
+                self.ref?.child("vendors").child(self.vendorID ?? "").child("events").child(self.eventID ?? "").removeValue()
+            }
+            
+        })
+ 
+            **/
+        
        
         
         if quantity == totalQuantity * 2 {
@@ -463,7 +476,7 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
             self.ref?.child("vendors").child(self.vendorID ?? "").child("closedEvents").child(self.eventID ?? "").observeSingleEvent(of: .value, with:
             {(snapshot) in
                 
-                if snapshot == nil {
+                if snapshot.value == nil {
                     
                     let alert = UIAlertController(title: "Your Purchase was Successful!", message: "View your new tickets in the 'My Tickets' tab.", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
