@@ -107,7 +107,7 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
         cell.bottomRound.layer.cornerRadius = 5
         cell.layer.cornerRadius = 5
         
-        let url = URL(string: events[indexPath.row].imageURL!) ?? URL(string: "www.apple.com")!
+        let url = URL(string: events[indexPath.row].imageURL ?? "") ?? URL(string: "www.apple.com")!
         
         alamofireLoad(from: url, iv: cell.eventImageView)
         
@@ -215,7 +215,7 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
         while (x < events.count-1) {
             var closestInt = x
             for y in x+1...events.count-1 {
-                if compareDates(date1: events[x].unformattedDateAndTime!, date2: events[y].unformattedDateAndTime!) == true{
+                if compareDates(date1: events[x].unformattedDateAndTime ?? "", date2: events[y].unformattedDateAndTime ?? "" ) == true{
                     closestInt = y
                 }
             }
@@ -232,8 +232,8 @@ class CustomerVendorListViewController: UIViewController, UITableViewDataSource,
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
-        let d1: Date = dateFormatter.date(from: date1)!
-        let d2: Date = dateFormatter.date(from: date2)!
+        let d1: Date = dateFormatter.date(from: date1) ?? Date()
+        let d2: Date = dateFormatter.date(from: date2) ?? Date()
         
         if (d1 > d2){
             return true

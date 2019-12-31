@@ -148,14 +148,14 @@ class CustomerArchiveTicketViewController: UIViewController, UITableViewDelegate
             
             print("debug_child_added" + String(self.tickets.count))
             
-            let ticket = snapshot.value as? NSDictionary
+            let ticket = snapshot.value as? NSDictionary ?? [:]
             
-            let key = ticket!["key"] as! String
-            let eventTitle = ticket!["title"] as? String ?? ""
-            let dateAndTime = ticket!["dateAndTime"] as? String ?? "No Date Found"
-            let ticketType = ticket!["ticketType"] as? String ?? ""
-            let userName = ticket!["userName"] as? String ?? ""
-            let location = ticket!["location"] as? String ?? ""
+            let key = ticket["key"] as? String ?? ""
+            let eventTitle = ticket["title"] as? String ?? ""
+            let dateAndTime = ticket["dateAndTime"] as? String ?? "No Date Found"
+            let ticketType = ticket["ticketType"] as? String ?? ""
+            let userName = ticket["userName"] as? String ?? ""
+            let location = ticket["location"] as? String ?? ""
             
             
             let ticketInstance = Ticket(key: key, eventTitle: eventTitle, ticketType: ticketType, userName: userName, dateAndTime: dateAndTime, location: location)
@@ -176,8 +176,8 @@ class CustomerArchiveTicketViewController: UIViewController, UITableViewDelegate
             
         })
         query?.observe(.childRemoved, with: { (snapshot) in
-            let ticket = snapshot.value as? NSDictionary
-            let key = ticket!["key"] as! String
+            let ticket = snapshot.value as? NSDictionary ?? [:]
+            let key = ticket["key"] as? String ?? ""
             
             var index = 0
             for t in self.tickets{
@@ -232,8 +232,8 @@ class CustomerArchiveTicketViewController: UIViewController, UITableViewDelegate
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy h:mm a"
         
-        let d1: Date = dateFormatter.date(from: date1)!
-        let d2: Date = dateFormatter.date(from: date2)!
+        let d1: Date = dateFormatter.date(from: date1) ?? Date()
+        let d2: Date = dateFormatter.date(from: date2) ?? Date()
         
         if (d1 > d2){
             return true

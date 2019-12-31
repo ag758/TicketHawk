@@ -47,8 +47,8 @@ class CommunityEditViewController: UIViewController ,UITableViewDelegate, UITabl
     func fetchCommunities(){
         let query = ref?.child("communities")
         query?.observe(.childAdded, with: { (snapshot) in
-            let community = snapshot.value as? NSDictionary
-            let name = community!["name"] as! String
+            let community = snapshot.value as? NSDictionary ?? [:]
+            let name = community["name"] as? String ?? ""
             self.communities.append(name)
             self.communities = self.communities.sorted()
             
@@ -56,11 +56,11 @@ class CommunityEditViewController: UIViewController ,UITableViewDelegate, UITabl
             
         })
         query?.observe(.childRemoved, with: { (snapshot) in
-            let community = snapshot.value as? NSDictionary
-            let name = community!["name"] as! String
+            let community = snapshot.value as? NSDictionary ?? [:]
+            let name = community["name"] as? String ?? ""
             for c in self.communities{
                 if c == name{
-                    self.communities.remove(at: self.communities.lastIndex(of: c)!)
+                    self.communities.remove(at: self.communities.lastIndex(of: c) ?? 0)
                 }
             }
             

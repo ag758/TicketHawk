@@ -79,12 +79,12 @@ class EventTicketNumberViewController: UIViewController
     func loadTicketTypes(){
         self.ref?.child("vendors").child(vendorID ?? "").child("events").child(eventID ?? "").observeSingleEvent(of: .value, with: {(snapshot) in
             
-            let event = snapshot.value as? NSDictionary
+            let event = snapshot.value as? NSDictionary ?? [:]
             
-            let tickets = event!["ticketTypes"] as? Dictionary ?? [:]
+            let tickets = event["ticketTypes"] as? Dictionary ?? [:]
             
             for (ticketname, ticketprice) in tickets {
-                self.ticketTypes.append(TicketType(name: ticketname as! String, price: ticketprice as! Int))
+                self.ticketTypes.append(TicketType(name: ticketname as? String ?? "", price: ticketprice as? Int ?? 0))
                 self.quantityTableView.reloadData()
             }
         })
@@ -95,9 +95,9 @@ class EventTicketNumberViewController: UIViewController
             
             for (ticketname, _) in ticket {
                 for t in self.ticketTypes {
-                    if t.name == (ticketname as! String) {
+                    if t.name == (ticketname as? String ?? "") {
                         let index = self.ticketTypes.index(of: t)
-                        self.ticketTypes.remove(at: index!)
+                        self.ticketTypes.remove(at: index ?? 0)
                     }
                 }
             }
