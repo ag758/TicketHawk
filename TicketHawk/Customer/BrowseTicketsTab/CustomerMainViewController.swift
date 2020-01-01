@@ -499,7 +499,7 @@ UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
             
             for v in self.vendors {
                 if v.id == i {
-                    self.vendors.remove(at: self.vendors.index(of: v)!)
+                    self.vendors.remove(at: self.vendors.index(of: v) ?? 0)
                     self.vendorsTableView.reloadData()
                 }
             }

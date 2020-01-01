@@ -473,10 +473,11 @@ extension EventTicketNumberViewController: STPAddCardViewControllerDelegate {
             
             //Check if the event has been closed already
             
-            self.ref?.child("vendors").child(self.vendorID ?? "").child("closedEvents").child(self.eventID ?? "").observeSingleEvent(of: .value, with:
+            self.ref?.child("vendors").child(self.vendorID ?? "").child("closedEvents").child(self.eventID ?? "").child("eventTitle").observeSingleEvent(of: .value, with:
+                
             {(snapshot) in
                 
-                if snapshot.value == nil {
+                if !snapshot.exists(){
                     
                     let alert = UIAlertController(title: "Your Purchase was Successful!", message: "View your new tickets in the 'My Tickets' tab.", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
