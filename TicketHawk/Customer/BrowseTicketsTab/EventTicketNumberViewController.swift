@@ -172,7 +172,7 @@ class EventTicketNumberViewController: UIViewController
         //Total = subtotal of items before tax and before TicketHawk Fees
         if (total > 0){
             
-            self.fees = Int(ceil((Double(total) * 0.15) + 30 ))
+            self.fees = Int(ceil((Double(total) * 0.15) + 70 ))
             
             self.paymentTotalInt = (self.fees ?? 0) + total
         } else {

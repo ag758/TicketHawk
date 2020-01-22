@@ -68,6 +68,7 @@
 		561F91612326983B00194AA3 /* CustomerArchiveTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerArchiveTicketViewController.swift; sourceTree = "<group>"; };
 		5622A97B22EE822A00F0A806 /* CustomerTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTicketViewController.swift; sourceTree = "<group>"; };
 		563A1FD923208EE400ED9156 /* CustomerVendorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerVendorListViewController.swift; sourceTree = "<group>"; };
+		56447E1323C0B9660062740A /* TicketHawk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TicketHawk.entitlements; sourceTree = "<group>"; };
 		5651F39222CEA73E009BEF73 /* CustomerViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController1.swift; sourceTree = "<group>"; };
 		5651F39422D144B3009BEF73 /* CustomerViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController2.swift; sourceTree = "<group>"; };
 		5651F39622D14BF2009BEF73 /* CustomerMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerMainViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		5656DA3722C060710079920C /* TicketHawk */ = {
 			isa = PBXGroup;
 			children = (
+				56447E1323C0B9660062740A /* TicketHawk.entitlements */,
 				560B667923AC92C700E599EC /* TicketHawkRelease.entitlements */,
 				5656DA3A22C060710079920C /* SplitViewController.swift */,
 				5656DA3822C060710079920C /* AppDelegate.swift */,
@@ -691,6 +693,7 @@
 			baseConfigurationReference = F3E00C3E88EAC66C71A4F6A7 /* Pods-TicketHawk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TicketHawk/TicketHawk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XQ4BKPX7ME;
 				INFOPLIST_FILE = TicketHawk/Info.plist;
@@ -699,6 +702,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = ap.TicketHawk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -720,6 +724,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = ap.TicketHawk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

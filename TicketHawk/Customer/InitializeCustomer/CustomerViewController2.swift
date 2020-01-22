@@ -99,11 +99,16 @@ class CustomerViewController2: UIViewController,UITableViewDelegate, UITableView
         let userID: String = (user?.uid)!
         
         //Check valid inputs
+        
+        /**
         if (nameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false
             && intendedCommunity != ""){
+            */
+        
+        if (intendedCommunity != ""){
             
-            ref?.child("customers/\(userID)/contactName").setValue(nameTextField.text)
-            ref?.child("customers/\(userID)/contactEmail").setValue(emailTextField.text)
+            ref?.child("customers/\(userID)/contactName").setValue(nameTextField.text ?? "Default")
+            ref?.child("customers/\(userID)/contactEmail").setValue(emailTextField.text ?? "Default")
             
             //set flag did finish setting up
             ref?.child("customers/\(userID)/didFinishSigningUp").setValue(true)

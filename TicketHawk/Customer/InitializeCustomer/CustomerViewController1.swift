@@ -46,6 +46,7 @@ class CustomerViewController1: UIViewController {
     
     func checkLoggedIn(){
         Auth.auth().addStateDidChangeListener { auth, user in
+            print("a")
             if user != nil {
                 self.customerLogin()
             } else {
@@ -58,10 +59,20 @@ class CustomerViewController1: UIViewController {
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self as? FUIAuthDelegate
         
-        let providers: [FUIAuthProvider] = [
-            FUIGoogleAuth(),
-            FUIFacebookAuth(),
-        ]
+        var providers: [FUIAuthProvider] = []
+        
+        if #available(iOS 13.0, *) {
+            providers = [
+                FUIGoogleAuth(),
+                FUIFacebookAuth(),
+                FUIOAuth.appleAuthProvider()
+            ]
+        } else {
+           providers = [
+                FUIGoogleAuth(),
+                FUIFacebookAuth(),
+            ]
+        }
         authUI?.providers = providers
         let authViewController = authUI?.authViewController()
         
@@ -75,7 +86,7 @@ class CustomerViewController1: UIViewController {
         let user = Auth.auth().currentUser
         
         let userID: String = (user?.uid)!
-        let userName: String = (user?.displayName)!
+        let userName: String = (user?.displayName) ?? "Default"
         
         //Values that will not change
         
