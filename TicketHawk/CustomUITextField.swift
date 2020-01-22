@@ -1,5 +1,5 @@
 import Foundation
-import UIKit  // don't forget this
+import UIKit
 
 class CustomUITextField: UITextField {
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
